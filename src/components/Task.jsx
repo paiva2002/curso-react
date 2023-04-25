@@ -1,0 +1,40 @@
+import React from 'react';
+import './Task.css';
+import {CgClose, CgInfo} from 'react-icons/cg';
+//import {useHistory} from 'react-router-dom';
+
+import {useNavigate} from 'react-router-dom';
+//navigate('/about');
+const Task = ({task, handleTaskClick, handleDeletion}) => {
+    const navigate = useNavigate();
+
+    const handleTaskDetailsClick = () => {
+        navigate.push('{task.title}');
+        //history.push('/${task.title}');
+    };
+
+    return(
+        <div className="task-container" style={task.completed ? {borderLeft: '6px solid chartreuse'} : {} }>
+
+            <div className='task-title' onClick={() => handleTaskClick(task.id)}>
+                {task.title}
+            </div>
+            <div className='buttons-container'>
+                <button 
+                    className='remove-task-button'
+                    onClick={() => handleDeletion(task.id)}>
+                    <CgClose/>
+                </button>
+                <button 
+                    className='see-task-details-button' onClick={handleTaskDetailsClick}
+                    
+                >
+                    <CgInfo/>
+                </button>
+            </div>
+        </div>
+    );
+    //return <div className="task-container">{task.title}</div>;
+};
+ 
+export default Task;
