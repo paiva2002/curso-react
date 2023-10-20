@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tasks from "./components/Tasks";
 import './App.css';
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AddTask from "./components/AddTask";
 import {v4 as uuidv4} from 'uuid';
 import Header from "./components/Header";
@@ -56,23 +56,25 @@ const App = () => {
   };
   return(
     <Router>
-        <div className="container">
-          <Header/>
+      <div className="container">
+        <Header/>
+        <Routes>
           <Route path="/"
-          exact
-          render={() => (
-            <>
+            exact
+            Component={() => (
+              <>
                 <AddTask handleTaskAddition = {handleTaskAddition}/>
                 <Tasks
                     tasks ={tasks} 
-                    handleTaskClik={handleAddTaskClick}
+                    onHandleTaskClick={handleAddTaskClick}
                     handleTaskDeletion={handleTaskDeletion}
                 />
-            </>
-          )}
-        />
-        <Route path="/:taskTitle" exact Component={TaskDetails}/>
-        </div>
+              </>
+            )}
+          />
+          <Route path="/:taskTitle" exact Component={TaskDetails}/>
+        </Routes>
+      </div>
     </Router>
   );
 };
