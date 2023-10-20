@@ -4,15 +4,12 @@ import Button from './Button';
 import { useParams, useNavigate } from 'react-router-dom';
 import "./TaskDetails.css";
 
-//import {useNavigate} from 'react-router-dom';
-//navigate('/about');
-
 function TaskDetails() {
     const params = useParams();
     const navigate = useNavigate();
 
     const handleBackButtonClick = () => {
-        navigate.goBack();
+        navigate(-1);
     };
     return (
         <>
